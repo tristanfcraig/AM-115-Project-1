@@ -1,5 +1,8 @@
-from rcp import get_polls, get_poll_data
 import random
+
+# states = []
+# start_date = 
+# end_date = 
 
 phi = .8
 c = .5 * (1 - phi)
