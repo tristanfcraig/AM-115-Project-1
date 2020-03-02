@@ -4,6 +4,9 @@ import numpy as np
 import pandas as pd
 import random
 import matplotlib.pyplot as plt
+import matplotlib.style as style
+
+style.use('fivethirtyeight')
 
 if len(sys.argv) > 1:
 	if len(sys.argv[1]) == 2:
@@ -33,12 +36,19 @@ for state in states:
 	spread = []
 
 	for i in range(0,len(clinton)):
-		spread.append(float(clinton[i]) - float(sanders[i]))
+		spread.append(abs(float(clinton[i]) - float(sanders[i])))
 		t.append(i)
 
 	spread = spread[::-1]
 
-	plt.figure()
+	plt.figure(figsize=(15, 10))
+	title = 'Clinton vs. Sanders Polling Results (' + state + ')'
+	plt.title(title)
+	plt.autoscale()
+	plt.ylabel('% Spread')
+	plt.xlabel('Time')
+	plt.tick_params(labelbottom=False)    
+	plt.ylim(0,100)
 	plt.plot(t,spread)
 	out_file = 'Output/' + state + '.png'
 	plt.savefig(out_file)
